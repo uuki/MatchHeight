@@ -1,21 +1,17 @@
-import throttle from './throttle.js';
-import MatchHeight from './MatchHeight.js';
+import MatchHeight from './MatchHeight'
 
-const throttledUpdate = throttle( MatchHeight.update, 200 );
+const matchHeight = new MatchHeight('[data-mh]');
+
 
 window.addEventListener( 'DOMContentLoaded', function onDomReady() {
-
-	MatchHeight.init();
-	window.removeEventListener( 'DOMContentLoaded', onDomReady );
-
+  matchHeight.init();
+  window.removeEventListener( 'DOMContentLoaded', onDomReady );
 } );
-window.addEventListener( 'load', function onLoad() {
 
-	MatchHeight.update();
+window.addEventListener( 'load', function onLoad() {
+	matchHeight.update();
 	window.removeEventListener( 'load', onLoad );
 
 } );
 
-window.addEventListener( 'resize', throttledUpdate );
-
-export default MatchHeight;
+export default matchHeight;
